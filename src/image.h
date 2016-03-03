@@ -17,6 +17,8 @@ public:
     const std::vector<uint8_t>& GetData() const;
     void CopyData(std::vector<uint8_t>& data) const;
     
+    const uint32_t GetSize() const;
+    
 private:
     uint32_t width_;
     uint32_t height_;

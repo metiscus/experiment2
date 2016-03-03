@@ -1,4 +1,6 @@
 #include "image.h"
+#include <cstdio>
+#include <iterator>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "image.inl"
@@ -17,8 +19,20 @@ Image::~Image()
 
 bool Image::LoadFile(const std::string& filename)
 {
-    //TODO
-    return false;
+    uint8_t *pixels = (uint8_t*)stbi_load(filename.c_str(), (int*)&width_, (int*)&height_, (int*)&channels_, 4);
+    if(!pixels)
+    {
+        fprintf(stderr, "Image::LoadFile(%s) failed to load\n", filename.c_str());
+        return false;
+    }
+    else
+    {
+        data_.clear();
+        std::copy(pixels, pixels+width_*height_*channels_*sizeof(uint8_t), std::back_inserter(data_));
+        stbi_image_free(pixels);
+    }
+
+    return true;
 }
 
 uint32_t Image::GetWidth() const
@@ -44,4 +58,9 @@ const std::vector<uint8_t>& Image::GetData() const
 void Image::CopyData(std::vector<uint8_t>& data) const
 {
     data = data_;
+}
+
+const uint32_t Image::GetSize() const
+{
+    return data_.size() + sizeof(Image);
 }

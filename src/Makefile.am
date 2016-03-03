@@ -1,6 +1,6 @@
-game_CXXFLAGS=$(SDL2_CFLAGS)
+game_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
 bin_PROGRAMS = game
-game_LDFLAGS = $(SDL2_LIBS)
+game_LDFLAGS = $(SDL2_LIBS) $(OPENGL_LIBS)
 game_SOURCES =\
 	main.cpp	\
 	window.cpp	\
@@ -10,4 +10,5 @@ game_SOURCES =\
 	image.cpp	\
 	image.h		\
 	image.inl	\
-
+	texture.h	\
+	texture.cpp

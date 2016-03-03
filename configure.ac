@@ -8,5 +8,6 @@ AX_CXX_COMPILE_STDCXX([11],[noext],[mandatory])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile src/Makefile])
 PKG_CHECK_MODULES([SDL2], [sdl2])
+PKG_CHECK_MODULES([OPENGL], [gl])
 AC_CONFIG_MACRO_DIR([m4])
 AC_OUTPUT
