@@ -1,20 +1,23 @@
-lib_LTLIBRARIES=librender.la
+lib_LTLIBRARIES=libcore.la librender.la
+libcore_la_CXXFLAGS=-ffast-math
+libcore_la_SOURCES   =	\
+	core/vector2.h		\
+	core/vector2.cpp	\
+	core/vector3.h		\
+	core/vector3.cpp	\
+	core/vector4.h		\
+	core/vector4.cpp
 
 librender_la_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
-librender_la_LDFLAGS =$(SDL2_LIBS) $(OPENGL_LIBS)
-librender_la_SOURCES =\
+librender_la_LDFLAGS =$(SDL2_LIBS) $(OPENGL_LIBS) -lcore
+librender_la_SOURCES =	\
 	render/window.cpp	\
-	render/window.h	\
+	render/window.h		\
 	render/render.cpp	\
-	render/render.h	\
+	render/render.h		\
 	render/image.cpp	\
 	render/image.h		\
 	render/image.inl	\
 	render/texture.h	\
-	render/texture.cpp	\
-	render/vector2.h	\
-	render/vector2.cpp	\
-	render/vector3.h	\
-	render/vector3.cpp	\
-	render/vector4.h	\
-	render/vector4.cpp
+	render/texture.cpp
+
