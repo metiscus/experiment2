@@ -21,7 +21,7 @@ librender_la_SOURCES =	\
 	render/texture.h	\
 	render/texture.cpp	\
 	render/array.h		\
-	render/array.cpp	\
+	render/array.cpp	
 
 TESTS= test_core
 check_PROGRAMS= test_core
