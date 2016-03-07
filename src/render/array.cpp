@@ -1,5 +1,5 @@
 #include "array.h"
-#include <gl/gl.h>
+#include <GL/gl.h>
 
 Array::Array(Type type)
     : type_(type)
@@ -49,7 +49,7 @@ Array::Array(Type type)
     }
 }
 
-Type Array::GetType() const
+Array::Type Array::GetType() const
 {
     return type_;
 }
