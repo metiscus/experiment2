@@ -19,7 +19,9 @@ librender_la_SOURCES =	\
 	render/image.h		\
 	render/image.inl	\
 	render/texture.h	\
-	render/texture.cpp
+	render/texture.cpp	\
+	render/array.h		\
+	render/array.cpp	\
 
 TESTS= test_core
 check_PROGRAMS= test_core
