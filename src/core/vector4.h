@@ -10,6 +10,7 @@ struct Vector4
     float y;
     float z;
 
+    static Vector4 AngleAxis(float radians, Vector3 axis);
     Vector4(float w_ = 0.0f, float x_ = 0.0f, float y_ = 0.0f, float z_ = 0.0f);
 
     float Dot(const Vector4& other) const;

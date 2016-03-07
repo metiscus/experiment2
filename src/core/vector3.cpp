@@ -1,6 +1,7 @@
 #include "vector3.h"
 #include <cassert>
 #include <cmath>
+#include <cfloat>
 
 Vector3::Vector3(float x_, float y_, float z_)
     : x(x_)
@@ -29,18 +30,18 @@ float Vector3::Length2() const
 
 float Vector3::Length() const
 {
-    return sqrtf(x*x+y*y+z*z);
+    return sqrtf(x*x + y*y + z*z);
 }
 
 Vector3 Vector3::AsUnit() const
 {
-    float iLen = 1.0f / (Length() + 0.0001f);
+    float iLen = 1.0f / (Length() + FLT_EPSILON);
     return Vector3(x*iLen, y*iLen, z*iLen);
 }
 
 void Vector3::ToUnit()
 {
-    float iLen = 1.0f / (Length() + 0.0001f);
+    float iLen = 1.0f / (Length() + FLT_EPSILON);
     x*=iLen;
     y*=iLen;
     z*=iLen;
@@ -77,7 +78,7 @@ Vector3 Vector3::operator*(const float& rhs) const
 
 Vector3 Vector3::operator/(const float& rhs) const
 {
-    float iVal = 1.0f / rhs;
+    float iVal = 1.0f / (rhs + FLT_EPSILON);
     return Vector3(x*iVal, y*iVal, z*iVal);
 }
 
@@ -91,7 +92,7 @@ Vector3& Vector3::operator*=(const float& rhs)
 
 Vector3& Vector3::operator/=(const float& rhs)
 {
-    float iVal = 1.0f / rhs;
+    float iVal = 1.0f / (rhs + FLT_EPSILON);
     x *= iVal;
     y *= iVal;
     z *= iVal;

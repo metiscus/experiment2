@@ -21,3 +21,8 @@ librender_la_SOURCES =	\
 	render/texture.h	\
 	render/texture.cpp
 
+TESTS= test_core
+check_PROGRAMS= test_core
+
+test_core_CXXFLAGS	=-lcore
+test_core_SOURCES	=tests/test_core.cpp

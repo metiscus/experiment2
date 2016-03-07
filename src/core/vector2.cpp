@@ -1,5 +1,6 @@
 #include "vector2.h"
 #include <cassert>
+#include <cfloat>
 #include <cmath>
 
 Vector2::Vector2(float x_, float y_)
@@ -26,13 +27,13 @@ float Vector2::Length() const
 
 Vector2 Vector2::AsUnit() const
 {
-    float iLen = 1.0f / (Length() + 0.0001f);
+    float iLen = 1.0f / (Length() + FLT_EPSILON);
     return Vector2(x*iLen, y*iLen);
 }
 
 void Vector2::ToUnit()
 {
-    float iLen = 1.0f / (Length() + 0.0001f);
+    float iLen = 1.0f / (Length() + FLT_EPSILON);
     x*=iLen;
     y*=iLen;
 }
@@ -66,7 +67,7 @@ Vector2 Vector2::operator*(const float& rhs) const
 
 Vector2 Vector2::operator/(const float& rhs) const
 {
-    return Vector2(x/rhs, y/rhs);
+    return Vector2(x/(rhs+FLT_EPSILON), y/(rhs+FLT_EPSILON));
 }
 
 Vector2& Vector2::operator*=(const float& rhs)
@@ -78,7 +79,7 @@ Vector2& Vector2::operator*=(const float& rhs)
 
 Vector2& Vector2::operator/=(const float& rhs)
 {
-    float iVal = 1.0f / rhs;
+    float iVal = 1.0f / (rhs + FLT_EPSILON);
     x *= iVal;
     y *= iVal;
     return *this;

@@ -1,6 +1,7 @@
 #include "vector4.h"
 #include <cassert>
 #include <cmath>
+#include <cfloat>
 
 Vector4::Vector4(float w_, float x_, float y_, float z_)
     : w(w_)
@@ -9,6 +10,16 @@ Vector4::Vector4(float w_, float x_, float y_, float z_)
     , z(z_)
 {
     ;
+}
+
+Vector4 Vector4::AngleAxis(float radians, Vector3 axis)
+{
+    Vector4 ret(cos(0.5f*radians),
+                sin(0.5f*radians) * axis.x,
+                sin(0.5f*radians) * axis.y,
+                sin(0.5f*radians) * axis.z);
+    ret.ToUnit();
+    return ret;
 }
 
 float Vector4::Dot(const Vector4& other) const
@@ -28,13 +39,13 @@ float Vector4::Length() const
 
 Vector4 Vector4::AsUnit() const
 {
-    float iLen = 1.0f / (Length() + 0.0001f);
+    float iLen = 1.0f / (Length() + FLT_EPSILON);
     return Vector4(w*iLen, x*iLen, y*iLen, z*iLen);
 }
 
 void Vector4::ToUnit()
 {
-    float iLen = 1.0f / (Length() + 0.0001f);
+    float iLen = 1.0f / (Length() + FLT_EPSILON);
     w*=iLen;
     x*=iLen;
     y*=iLen;
@@ -79,7 +90,7 @@ Vector4 Vector4::operator*(const float& rhs) const
 
 Vector4 Vector4::operator/(const float& rhs) const
 {
-    float iVal = 1.0f / rhs;
+    float iVal = 1.0f / (rhs + FLT_EPSILON);
     return Vector4(w*iVal, x*iVal, y*iVal, z*iVal);
 }
 
@@ -94,7 +105,7 @@ Vector4& Vector4::operator*=(const float& rhs)
 
 Vector4& Vector4::operator/=(const float& rhs)
 {
-    float iVal = 1.0f / rhs;
+    float iVal = 1.0f / (rhs + FLT_EPSILON);
     w *= iVal;
     x *= iVal;
     y *= iVal;
