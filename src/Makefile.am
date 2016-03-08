@@ -28,7 +28,9 @@ librender_la_SOURCES =	\
 	render/program.h	\
 	render/program.cpp	\
 	render/shader.h		\
-	render/shader.cpp
+	render/shader.cpp	\
+	render/vbo.h		\
+	render/vbo.cpp
 
 #TESTS= test_core
 #check_PROGRAMS= test_core

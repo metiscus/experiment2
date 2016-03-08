@@ -3,6 +3,9 @@
 #include <cassert>
 #include <cstdio>
 
+#include "glad/glad.h"
+#include <GL/gl.h>
+
 std::once_flag Window::sdl_init_video_;
 
 Window::Window(const std::string& title, uint32_t width, uint32_t height)
