@@ -30,7 +30,9 @@ librender_la_SOURCES =	\
 	render/shader.h		\
 	render/shader.cpp	\
 	render/vbo.h		\
-	render/vbo.cpp
+	render/vbo.cpp		\
+	render/sampler.h	\
+	render/sampler.cpp
 
 #TESTS= test_core
 #check_PROGRAMS= test_core
