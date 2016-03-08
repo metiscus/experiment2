@@ -4,7 +4,9 @@ libcore_la_SOURCES   =	\
 	core/math.h			\
 	core/ifile.h		\
 	core/textfile.h		\
-	core/textfile.cpp	
+	core/textfile.cpp	\
+	core/rectangle.h	\
+	core/rectangle.cpp
 
 librender_la_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
 librender_la_LDFLAGS =$(SDL2_LIBS) $(OPENGL_LIBS) -lcore

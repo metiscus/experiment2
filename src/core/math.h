@@ -9,6 +9,7 @@
 #include "glm/gtx/quaternion.hpp"
 #include "glm/gtx/euler_angles.hpp"
 #include "glm/gtx/norm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 typedef glm::vec2 Vector2;
 typedef glm::vec3 Vector3;
