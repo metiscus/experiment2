@@ -34,7 +34,9 @@ librender_la_SOURCES =	\
 	render/vbo.h		\
 	render/vbo.cpp		\
 	render/sampler.h	\
-	render/sampler.cpp
+	render/sampler.cpp	\
+	render/state.h		\
+	render/state.cpp
 
 #TESTS= test_core
 #check_PROGRAMS= test_core
