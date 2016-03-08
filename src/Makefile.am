@@ -2,11 +2,14 @@ lib_LTLIBRARIES=libcore.la librender.la
 libcore_la_CXXFLAGS=-ffast-math
 libcore_la_SOURCES   =	\
 	core/vector2.h		\
-	core/vector2.cpp	\
 	core/vector3.h		\
-	core/vector3.cpp	\
 	core/vector4.h		\
-	core/vector4.cpp
+	core/ifile.h		\
+	core/textfile.h		\
+	core/vector2.cpp	\
+	core/vector3.cpp	\
+	core/vector4.cpp	\
+	core/textfile.cpp	
 
 librender_la_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
 librender_la_LDFLAGS =$(SDL2_LIBS) $(OPENGL_LIBS) -lcore
