@@ -66,3 +66,14 @@ bool TextFile::Write(std::vector<char> data)
     }
     return false;
 }
+
+bool TextFile::Read(std::vector<std::string>& data)
+{
+    std::string line;
+    while(file_.is_open() && !file_.eof())
+    {
+        std::getline(file_, line);
+        data.push_back(line);
+    }
+    return true;
+}

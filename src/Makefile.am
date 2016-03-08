@@ -1,19 +1,17 @@
 lib_LTLIBRARIES=libcore.la librender.la
 libcore_la_CXXFLAGS=-ffast-math
 libcore_la_SOURCES   =	\
-	core/vector2.h		\
-	core/vector3.h		\
-	core/vector4.h		\
+	core/math.h			\
 	core/ifile.h		\
 	core/textfile.h		\
-	core/vector2.cpp	\
-	core/vector3.cpp	\
-	core/vector4.cpp	\
 	core/textfile.cpp	
 
 librender_la_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
 librender_la_LDFLAGS =$(SDL2_LIBS) $(OPENGL_LIBS) -lcore
 librender_la_SOURCES =	\
+	render/glad/glad.c	\
+	render/glad/glad.h	\
+	render/glad/KHR/khrplatform.h\
 	render/window.cpp	\
 	render/window.h		\
 	render/render.cpp	\
@@ -24,10 +22,16 @@ librender_la_SOURCES =	\
 	render/texture.h	\
 	render/texture.cpp	\
 	render/array.h		\
-	render/array.cpp	
+	render/array.cpp	\
+	render/uniform.h	\
+	render/uniform.cpp	\
+	render/program.h	\
+	render/program.cpp	\
+	render/shader.h		\
+	render/shader.cpp
 
-TESTS= test_core
-check_PROGRAMS= test_core
+#TESTS= test_core
+#check_PROGRAMS= test_core
 
-test_core_CXXFLAGS	=-lcore
-test_core_SOURCES	=tests/test_core.cpp
+#test_core_CXXFLAGS	=-lcore
+#test_core_SOURCES	=tests/test_core.cpp

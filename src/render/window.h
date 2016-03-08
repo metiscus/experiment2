@@ -4,6 +4,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include "glad/glad.h"
 #include <SDL.h>
 
 class Window

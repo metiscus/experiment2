@@ -17,6 +17,12 @@ Window::Window(const std::string& title, uint32_t width, uint32_t height)
             fprintf(stderr, "Failed to initialize SDL Video\n");
             assert(false);
         }
+        
+        if(!gladLoadGL())
+        {
+            fprintf(stderr, "Failed to initialize OpenGL libraries\n");
+            assert(false);
+        }
     });
     
     if(title.length() == 0)

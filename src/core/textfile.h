@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdint>
 #include <fstream>
 #include <vector>
 
@@ -16,6 +15,8 @@ public:
     
     virtual bool Read(std::vector<char>& data);
     virtual bool Write(std::vector<char> data);
+    
+    bool Read(std::vector<std::string>& data);
 
 private:
     std::fstream file_;
