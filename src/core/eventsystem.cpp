@@ -4,6 +4,7 @@
 #include "eventhandler.h"
 #include "events/quit.h"
 #include <SDL.h>
+#include <cstdio>
 
 std::thread::id EventSystem::main_id_;
 std::unique_ptr<EventSystem> EventSystem::system_(nullptr);
@@ -11,7 +12,10 @@ std::unique_ptr<EventSystem> EventSystem::system_(nullptr);
 EventSystem::EventSystem()
     : current_queue_(0)
 {
-    ;
+    SDL_InitSubSystem(SDL_INIT_EVENTS);
+    SDL_InitSubSystem(SDL_INIT_TIMER);
+    SDL_InitSubSystem(SDL_INIT_JOYSTICK);
+    SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
 }
 
 void EventSystem::CreateInstance()
@@ -56,7 +60,8 @@ void EventSystem::PumpGlobalEvents()
 {
     assert(main_id_ == std::this_thread::get_id());
     SDL_Event event;
-    while(SDL_PollEvent(&event))
+    uint32_t start = SDL_GetTicks();
+    while(SDL_PollEvent(&event) == 1)
     {
         switch(event.type)
         {
@@ -67,6 +72,14 @@ void EventSystem::PumpGlobalEvents()
                 //TODO
                 break;
         }
+        
+#if 0
+        if(SDL_GetTicks() - start > 5)
+        {
+            fprintf(stderr, "EventSystem::PumpGlobalEvents is overrunning.\n");
+            break;
+        }
+#endif
     }
 }
 

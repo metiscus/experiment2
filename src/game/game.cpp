@@ -22,14 +22,31 @@ public:
         WindowPtr window = std::make_shared<Window>("Test", 800, 600);
         window->MakeCurrent();
 
-        glClearColor(0.1, 0.2, 0.2, 0.4);
+        float derp = 0.0f;
+        float derp2 = 0.0f;
+        uint32_t old = SDL_GetTicks();
         while(run_)
         {
-            glClear(GL_COLOR_BUFFER_BIT);
-            window->SwapBuffers();
-
+            old = SDL_GetTicks();
             EventSystem::GetInstance().PumpGlobalEvents();
             EventSystem::GetInstance().ProcessEvents();
+            
+            derp += 0.01f;
+            derp2 += 0.001f;
+            glClearColor(derp, derp2, 0.2, 0.4);
+            if(derp > 1.0f)
+            {
+                derp = 0.0f;
+            }
+            if(derp2 > 1.0f)
+            {
+                derp2 = 0.0f;
+            }
+            glClear(GL_COLOR_BUFFER_BIT);
+            
+            fprintf(stderr, "%u\n", SDL_GetTicks() - old);
+            old = SDL_GetTicks();
+            window->SwapBuffers();
         }
     }
     

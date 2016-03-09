@@ -1,5 +1,6 @@
 lib_LTLIBRARIES=libcore.la librender.la
 libcore_la_CXXFLAGS=-ffast-math $(SDL2_CFLAGS)
+libcore_la_LDFLAGS =
 libcore_la_SOURCES   =	\
 	core/math.h			\
 	core/ifile.h		\
@@ -15,7 +16,7 @@ libcore_la_SOURCES   =	\
 	core/events/quit.cpp
 
 librender_la_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
-librender_la_LDFLAGS =$(SDL2_LIBS) $(OPENGL_LIBS) -lcore
+librender_la_LDFLAGS =$(OPENGL_LIBS) -lcore
 librender_la_SOURCES =	\
 	render/glad/glad.c	\
 	render/glad/glad.h	\
@@ -46,8 +47,8 @@ librender_la_SOURCES =	\
 
 bin_PROGRAMS=thegame
 
-thegame_CXXFLAGS= $(all_includes) $(SDL2_CFLAGS) $(OPENGL_CFLAGS)
-thegame_LDFLAGS= $(all_libraries) $(SDL2_LIBS) $(OPENGL_LIBS) librender.la libcore.la
+thegame_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
+thegame_LDFLAGS=$(SDL2_LIBS) $(OPENGL_LIBS) librender.la libcore.la
 thegame_SOURCES=\
 	game/game.cpp
 

@@ -52,6 +52,8 @@ Window::Window(const std::string& title, uint32_t width, uint32_t height)
             assert(false);
         }
     });
+    
+    SDL_GL_SetSwapInterval(1);
 }
 
 Window::~Window()
