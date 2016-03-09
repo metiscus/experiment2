@@ -20,10 +20,10 @@ public:
     void SetSize(uint32_t width, uint32_t height);
     void ShowCursor();
     void HideCursor();
-    
+
     void MakeCurrent();
     void SwapBuffers();
-    
+
     static void SetOpenGLHint(uint32_t hint, uint32_t value);
 
 private:
