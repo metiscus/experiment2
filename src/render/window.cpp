@@ -7,6 +7,7 @@
 #include <GL/gl.h>
 
 std::once_flag Window::sdl_init_video_;
+std::once_flag Window::glad_init_;
 
 Window::Window(const std::string& title, uint32_t width, uint32_t height)
     : window_(nullptr)
@@ -18,12 +19,6 @@ Window::Window(const std::string& title, uint32_t width, uint32_t height)
         if(SDL_Init(SDL_INIT_VIDEO) != 0)
         {
             fprintf(stderr, "Failed to initialize SDL Video\n");
-            assert(false);
-        }
-        
-        if(!gladLoadGL())
-        {
-            fprintf(stderr, "Failed to initialize OpenGL libraries\n");
             assert(false);
         }
     });
@@ -50,6 +45,13 @@ Window::Window(const std::string& title, uint32_t width, uint32_t height)
     
     context_ = SDL_GL_CreateContext(window_);
 
+    std::call_once(glad_init_, [] () {
+        if(!gladLoadGL())
+        {
+            fprintf(stderr, "Failed to initialize OpenGL libraries\n");
+            assert(false);
+        }
+    });
 }
 
 Window::~Window()
@@ -127,7 +129,7 @@ void Window::SwapBuffers()
 {
     if(window_)
     {
-        SDL_GL_SwapWindow(0);
+        SDL_GL_SwapWindow(window_);
     }
     else
     {

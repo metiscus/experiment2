@@ -26,7 +26,6 @@ public:
     VBO(const VBO&) = delete;
     const VBO& operator=(const VBO&) = delete;
 
-
     void SetData(void* data, uint32_t dataSize, UsageType usage = DynamicDraw);
     void SetDataOffset(int offset, void* data, uint32_t dataSize);
 

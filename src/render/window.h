@@ -34,4 +34,7 @@ private:
     uint32_t height_;
 
     static std::once_flag sdl_init_video_;
+    static std::once_flag glad_init_;
 };
+
+typedef std::shared_ptr<Window> WindowPtr;

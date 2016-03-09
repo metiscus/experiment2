@@ -38,6 +38,16 @@ librender_la_SOURCES =	\
 	render/state.h		\
 	render/state.cpp
 
+bin_PROGRAMS=thegame
+
+thegame_SOURCES=\
+	game/game.cpp
+
+thegame_CXXFLAGS= $(all_includes) $(SDL2_CFLAGS) $(OPENGL_CFLAGS)
+thegame_LDFLAGS= $(all_libraries) $(SDL2_LIBS) $(OPENGL_LIBS) librender.la libcore.la
+
+AM_CPPFLAGS= $(all_includes)
+
 #TESTS= test_core
 #check_PROGRAMS= test_core
 
