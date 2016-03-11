@@ -13,7 +13,11 @@ libcore_la_SOURCES   =	\
 	core/eventsystem.h	\
 	core/eventsystem.cpp\
 	core/events/quit.h	\
-	core/events/quit.cpp
+	core/events/quit.cpp\
+	core/events/keyboard.h\
+	core/events/keyboard.cpp\
+	core/events/mouse.h\
+	core/events/mouse.cpp
 
 librender_la_CXXFLAGS=$(SDL2_CFLAGS) $(OPENGL_CFLAGS)
 librender_la_LDFLAGS =$(OPENGL_LIBS) -lcore

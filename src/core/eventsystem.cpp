@@ -3,6 +3,8 @@
 #include "event.h"
 #include "eventhandler.h"
 #include "events/quit.h"
+#include "events/keyboard.h"
+#include "events/mouse.h"
 #include <SDL.h>
 #include <cstdio>
 
@@ -68,8 +70,23 @@ void EventSystem::PumpGlobalEvents()
             case SDL_QUIT:
                 AddEvent(new QuitEvent());
                 break;
+            case SDL_KEYDOWN:
+                AddEvent(new KeyboardEvent(KeyboardEvent::KeyDown, event.key.keysym.sym));
+                break;
+            case SDL_KEYUP:
+                AddEvent(new KeyboardEvent(KeyboardEvent::KeyUp, event.key.keysym.sym));
+                break;
+            case SDL_MOUSEMOTION:
+            {
+                MouseEvent::ButtonState state;
+                state.left   = event.motion.state & SDL_BUTTON(1);
+                state.middle = event.motion.state & SDL_BUTTON(2);
+                state.right  = event.motion.state & SDL_BUTTON(3);
+                AddEvent(new MouseEvent(state, event.motion.x, event.motion.y)); 
+                break;
+            }
             default:
-                //TODO
+                fprintf(stderr, "EventSystem::PumpGlobalEvents Received an unhandled event.\n");
                 break;
         }
         
@@ -106,7 +123,6 @@ void EventSystem::ProcessEvents()
                 handler->HandleEvent(event);
             }
         }
-        
         delete event;
     }
 
@@ -125,5 +141,13 @@ void EventSystem::ProcessEvents()
 
 void EventSystem::RemoveEventHandler(std::shared_ptr<EventHandler> handler)
 {
-    //TODO
+    for(auto itr = handlers_.begin(); itr != handlers_.end(); ++itr)
+    {
+        auto ptr_handler = itr->lock();
+        if(ptr_handler == handler)
+        {
+            handlers_.erase(itr);
+            break;
+        }
+    }
 }

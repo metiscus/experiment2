@@ -24,10 +24,8 @@ public:
 
         float derp = 0.0f;
         float derp2 = 0.0f;
-        uint32_t old = SDL_GetTicks();
         while(run_)
         {
-            old = SDL_GetTicks();
             EventSystem::GetInstance().PumpGlobalEvents();
             EventSystem::GetInstance().ProcessEvents();
             
@@ -41,11 +39,10 @@ public:
             if(derp2 > 1.0f)
             {
                 derp2 = 0.0f;
+                window->SetSize(1024, 768);
             }
             glClear(GL_COLOR_BUFFER_BIT);
-            
-            fprintf(stderr, "%u\n", SDL_GetTicks() - old);
-            old = SDL_GetTicks();
+
             window->SwapBuffers();
         }
     }
