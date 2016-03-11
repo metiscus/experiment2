@@ -47,7 +47,11 @@ librender_la_SOURCES =	\
 	render/sampler.h	\
 	render/sampler.cpp	\
 	render/state.h		\
-	render/state.cpp
+	render/state.cpp	\
+	render/drawable.h	\
+	render/drawable.cpp	\
+	render/sprite.h		\
+	render/sprite.cpp
 
 bin_PROGRAMS=thegame
 
