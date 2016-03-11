@@ -9,6 +9,7 @@ class Texture
 {
 public:
     Texture();
+    Texture(const Image&);
     ~Texture();
 
     enum FilterType

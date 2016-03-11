@@ -8,6 +8,7 @@ class Image
 {
 public:
     Image();
+    Image(const std::string& filename);
     ~Image();
     
     bool LoadFile(const std::string& filename);

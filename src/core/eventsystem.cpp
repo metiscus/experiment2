@@ -103,9 +103,9 @@ void EventSystem::PumpGlobalEvents()
             case SDL_MOUSEBUTTONUP:
             {
                 MouseEvent::ButtonState state;
-                state.left   = (event.button.button == SDL_BUTTON_LEFT) ? 0 : state.left;
+                state.left   = (event.button.button == SDL_BUTTON_LEFT)   ? 0 : state.left;
                 state.middle = (event.button.button == SDL_BUTTON_MIDDLE) ? 0 : state.middle;
-                state.right  = (event.button.button == SDL_BUTTON_RIGHT) ? 0 : state.right;
+                state.right  = (event.button.button == SDL_BUTTON_RIGHT)  ? 0 : state.right;
                 AddEvent(new MouseEvent(state, event.button.x, event.button.y));
                 break;
             }

@@ -1,13 +1,21 @@
 #include "texture.h"
 
 #include <cassert>
-
+#include "glad/glad.h"
 #include <GL/gl.h>
+#include "image.h"
 
 Texture::Texture()
     : texture_(0)
 {
     glGenTextures(1, &texture_);
+}
+
+Texture::Texture(const Image& image)
+    : texture_(0)
+{
+    glGenTextures(1, &texture_);
+    Upload(image.GetData(), image.GetWidth(), image.GetHeight(), image.GetChannels());
 }
 
 Texture::~Texture()

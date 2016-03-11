@@ -12,6 +12,14 @@ Image::Image()
 {
 }
 
+Image::Image(const std::string& filename)
+    : width_(0)
+    , height_(0)
+    , channels_(0)
+{
+    LoadFile(filename);
+}
+
 Image::~Image()
 {
     

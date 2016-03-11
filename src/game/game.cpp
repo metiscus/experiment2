@@ -2,6 +2,10 @@
 #include <core/eventsystem.h>
 #include <core/math.h>
 #include <render/window.h>
+#include <render/image.h>
+#include <render/texture.h>
+#include <render/vbo.h>
+#include <render/sprite.h>
 #include <core/events/quit.h>
 #include <memory>
 
@@ -21,6 +25,9 @@ public:
     {
         WindowPtr window = std::make_shared<Window>("Test", 800, 600);
         window->MakeCurrent();
+
+        auto image = std::make_shared<Image>("data/character.png");
+        std::shared_ptr<Texture> tex = std::make_shared<Texture>(*image);
 
         float derp = 0.0f;
         float derp2 = 0.0f;
