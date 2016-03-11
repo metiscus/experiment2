@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <memory>
 #include <vector>
 
 class Array
@@ -75,3 +76,5 @@ public:
 private:
     std::vector<T> data_;
 };
+
+typedef std::shared_ptr<Array> ArrayPtr;
