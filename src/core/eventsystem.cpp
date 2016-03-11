@@ -18,6 +18,12 @@ EventSystem::EventSystem()
     SDL_InitSubSystem(SDL_INIT_TIMER);
     SDL_InitSubSystem(SDL_INIT_JOYSTICK);
     SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
+    
+    SDL_PumpEvents();
+    uint32_t mouse_state = SDL_GetMouseState(NULL, NULL);
+    mouse_.left   = mouse_state & SDL_BUTTON(1);
+    mouse_.middle = mouse_state & SDL_BUTTON(2);
+    mouse_.right  = mouse_state & SDL_BUTTON(3);
 }
 
 void EventSystem::CreateInstance()
@@ -83,6 +89,24 @@ void EventSystem::PumpGlobalEvents()
                 state.middle = event.motion.state & SDL_BUTTON(2);
                 state.right  = event.motion.state & SDL_BUTTON(3);
                 AddEvent(new MouseEvent(state, event.motion.x, event.motion.y)); 
+                break;
+            }
+            case SDL_MOUSEBUTTONDOWN:
+            {
+                MouseEvent::ButtonState state;
+                state.left   |= event.button.button == SDL_BUTTON_LEFT;
+                state.middle |= event.button.button == SDL_BUTTON_MIDDLE;
+                state.right  |= event.button.button == SDL_BUTTON_RIGHT;
+                AddEvent(new MouseEvent(state, event.button.x, event.button.y));
+                break;
+            }
+            case SDL_MOUSEBUTTONUP:
+            {
+                MouseEvent::ButtonState state;
+                state.left   = (event.button.button == SDL_BUTTON_LEFT) ? 0 : state.left;
+                state.middle = (event.button.button == SDL_BUTTON_MIDDLE) ? 0 : state.middle;
+                state.right  = (event.button.button == SDL_BUTTON_RIGHT) ? 0 : state.right;
+                AddEvent(new MouseEvent(state, event.button.x, event.button.y));
                 break;
             }
             default:

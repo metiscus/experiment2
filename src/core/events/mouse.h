@@ -16,7 +16,7 @@ public:
         uint32_t empty : 29;
     };
 
-    MouseEvent(ButtonState btn, uint32_t x, uint32_t y)
+    MouseEvent(ButtonState btn, int32_t x, int32_t y)
         : Event(type)
         , x_(x)
         , y_(y)
@@ -36,7 +36,7 @@ public:
     }
 
 private:
-    uint32_t x_;
-    uint32_t y_;
+    int32_t x_;
+    int32_t y_;
     ButtonState button_;
 };

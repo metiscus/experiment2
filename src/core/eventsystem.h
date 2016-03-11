@@ -3,6 +3,7 @@
 #include <list>
 #include <memory>
 #include <thread>
+#include "events/mouse.h"
 
 class Event;
 class EventHandler;
@@ -32,4 +33,6 @@ private:
     static std::unique_ptr<EventSystem> system_;
     
     EventSystem();
+    
+    MouseEvent::ButtonState mouse_;
 };
