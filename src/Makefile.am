@@ -51,7 +51,9 @@ librender_la_SOURCES =	\
 	render/drawable.h	\
 	render/drawable.cpp	\
 	render/sprite.h		\
-	render/sprite.cpp
+	render/sprite.cpp	\
+	render/node.h		\
+	render/node.cpp
 
 bin_PROGRAMS=thegame
 
